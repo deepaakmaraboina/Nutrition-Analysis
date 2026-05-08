@@ -1,0 +1,28 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block content %}
+<div class="inFormBackground">
+    <div class="inLoginForm">
+        <h2>Sign IN</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <div class="form-columns">
+                <div class="inputGroup">
+                    <label for="username">Email</label>
+                    <input type="email" id="username" name="username" placeholder="Enter Email Address" required>
+                </div>
+                <div class="inputGroup">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
+            </div>
+            <button class="submitForm">login </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

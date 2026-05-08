@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nutrition{% endblock %}</title>
+</head>
+<body>
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Dark blue for nav and accents */
+            --secondary-color: #34495e; /* Slightly lighter blue for hover states */
+            --accent-color: #1abc9c; /* Teal for buttons and highlights */
+            --accent-hover-color: #16a085; /* Darker teal for button hover */
+            --text-color: #ffffff; /* White text for contrast */
+            --background-color: #f4f4f4; /* Light gray for the body background */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font stack */
+            --padding: 1rem; /* Consistent padding */
+            --border-radius: 0.5rem; /* Rounded corners */
+            --transition-speed: 0.3s; /* Smooth transitions */
+        }
+        
+        /* Reset default styles */
+        body, h1, h2, h3, p, ul, li, a, input, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+            padding: var(--padding);
+            text-align: center;
+        }
+        
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            border-radius: var(--border-radius);
+        }
+        
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: background-color var(--transition-speed) ease;
+        }
+        
+        nav a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Forms */
+        form {
+            background: var(--text-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: left;
+            max-width: 400px;
+            width: 100%;
+            margin: 2rem auto;
+        }
+        
+        input, button {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: var(--font-family);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed) ease;
+        }
+        
+        input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+        .Navbar{
+            position:fixed;
+        }
+        button {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+        }
+        
+        button:hover {
+            background-color: var(--accent-hover-color);
+        }
+        
+        /* Container */
+        .container {
+            padding: 2rem;
+            background: var(--text-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            max-width: 800px;
+            margin-top:100px
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        
+            form {
+                padding: 1rem;
+            }
+        
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+    <div class='Navbar' style="display:flex;width:98.5%;justify-content:space-between;background: var(--primary-color);color:white;padding:10px;">
+        <h1>Nutritional Analytics</h1>
+        <nav style="padding-right:30px">
+            <a href="/">Home</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'check_nutritions' %}">check Nutritions</a>
+                <a href="{% url 'logout' %}"class="nav-link">logout</a>
+            {% else %}
+                <a href="{% url 'login' %}"class="nav-link">User Signin</a>
+                <a href="{% url 'register' %}"class="nav-link">User SignUp</a>
+            {% endif %}
+        </nav>    
+    </div>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css%}{% endblock %}
+{% block content %}
+<style>
+    .inputGroup input,select{
+        width: 100%;
+    }
+    .inputGroup option{
+        color: #0a0a0a;
+        cursor: pointer;
+    }
+</style>
+<section class="home-slider owl-carousel">
+    <div class="inFormBackground">
+        <div class="inLoginForm">
+            <h2>CHECK NUTRITION's</h2>
+            <form action="{% url 'check_nutritions' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="message">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                <div class="form-columns">
+                    <div class="inputGroup">
+                        <label for="text">Recipe Image</label>
+                        <input type="File" id="info" name="info" required>
+                    </div>
+                </div>
+                <button class="submitForm">CHECK NUTRITIONS</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

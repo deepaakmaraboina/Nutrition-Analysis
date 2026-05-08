@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    h2 {
+        text-align: center;
+    }
+    table {
+        margin:auto;
+        width: 60%;
+        border-collapse: collapse;
+        background: rgb(255, 255, 255);
+    }
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    th {
+        background: #0a0a0a;
+        color: white;
+    }
+</style>
+{% if ingredients %}
+<div style="margin-bottom:10%">
+    <h2>Nutrition Information</h2>
+    {% if error %}
+    <p style="color: red; text-align: center;">{{ error }}</p>
+    {% else %}
+    <div>
+        {{output_data|safe}}
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}
